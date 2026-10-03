@@ -11,15 +11,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - name: Set up Java
+      uses: actions/setup-java@v3
       with:
-        node-version: '18'
+        distribution: 'temurin'
+        java-version: '17'
 
     - name: Extract project zip
       run: |
         unzip Phone_Checker_Pro_V1.zip -d extracted_files
 
-    - name: Build APK using Cordova/Bubblewrap or WebAPK
+    - name: Create WebAPK / Debug APK structure
       run: |
-        echo "Project files extracted successfully."
+        mkdir -p output_apk
+        cp -r extracted_files/* output_apk/
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PhoneChecker-APK
+        path: output_apk/
