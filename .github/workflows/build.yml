@@ -27,7 +27,7 @@ jobs:
         cp -r extracted_files/* output_apk/
 
     - name: Upload APK Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: PhoneChecker-APK
         path: output_apk/
