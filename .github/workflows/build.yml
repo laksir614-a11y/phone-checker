@@ -11,10 +11,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create APK Archive
+      - name: Create Archive
         run: |
           mkdir -p output_apk
-          zip -r output_apk/PhoneChecker.zip index.html css js
+          zip -r output_apk/PhoneChecker.zip . -x ".git/*"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
